@@ -42,3 +42,14 @@ function applyLiveMode(){
   document.querySelectorAll('[data-score-v],[data-clear-score],[data-adjust],[data-wolf-type],[data-coin-key],[data-hi],[data-tee-c],[data-wolf-move],[data-unlock],[data-auto-advance],[data-compact],[data-reset],[data-import]').forEach(el=>{el.disabled=true;el.setAttribute('aria-disabled','true')});
 }
 function startLive(){fetchLive();clearInterval(livePoll);livePoll=setInterval(fetchLive,5000);if(isScorer())setTimeout(scheduleLivePublish,800)}
+
+function render(){
+  const app=document.getElementById('app');if(!app)return;
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.ui.tab));
+  if(state.ui.tab==='rounds')app.innerHTML=state.ui.round?renderRound(state.ui.round):renderRounds();
+  else if(state.ui.tab==='standings')app.innerHTML=renderStandings();
+  else if(state.ui.tab==='bracket')app.innerHTML=renderBracket();
+  else app.innerHTML=renderSettings();
+  bind();
+  applyLiveMode();
+}
