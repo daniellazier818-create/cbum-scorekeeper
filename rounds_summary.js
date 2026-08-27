@@ -1,9 +1,9 @@
-/* v3.3 dynamic Rounds competition summary */
+/* v3.4 dynamic Rounds competition summary */
 const roundsSummaryBase=renderRounds;
 const HOME_CBUM_EVENTS=['elie','northberwick','castlestuart','brora','royaldornoch','trump'];
 
 function homeRulesSummary(){
-  return`<div class="card home-comp-card"><div class="eyebrow">Competition scoring</div><div class="home-comp-section"><h3>C-Bum Cup points race</h3><div class="muted">Points begin at Elie. Elie, North Berwick & Castle Stuart: <b>5 winner / 2 loser</b>. Brora & Royal Dornoch: <b>5 / 3 / 2 / 1</b>. Trump finale: <b>7 / 4 / 2 / 1</b>. Gross birdie: <b>+1 per golfer per round</b>.</div></div><div class="home-comp-section divided"><h3>Match Play Championship</h3><div class="muted">Kingsbarns Stableford seeds <b>1–4</b>. North Berwick semifinals are <b>1 vs 4</b> and <b>2 vs 3</b>. Winners meet for the championship at Royal Dornoch; losers play the consolation match.</div></div></div>`;
+  return`<div class="card home-comp-card"><div class="eyebrow">Competition scoring</div><div class="home-comp-section"><h3><span class="brand-peach">🍑</span>C-Bum Cup points race</h3><div class="muted">Points begin at Elie. Elie, North Berwick & Castle Stuart: <b>5 winner / 2 loser</b>. Brora & Royal Dornoch: <b>5 / 3 / 2 / 1</b>. Trump finale: <b>7 / 4 / 2 / 1</b>. Gross birdie: <b>+1 per golfer per round</b>.</div></div><div class="home-comp-section divided"><h3>Match Play Championship</h3><div class="muted">Kingsbarns Stableford seeds <b>1–4</b>. North Berwick semifinals are <b>1 vs 4</b> and <b>2 vs 3</b>. Winners meet for the championship at Royal Dornoch; losers play the consolation match.</div></div></div>`;
 }
 function homeLiveEventText(c){
   if(c==='brora')return wolfRanks().map(r=>`${playerLabel(r.p)} ${fmtPts(r.pts)}`).join(' · ');
@@ -18,7 +18,7 @@ function homeCupStandings(){
   let note=completed.length?`Official through ${COURSE_DATA[completed[completed.length-1]].name}`:'Points begin at Elie';
   if(final)note='Final standings';
   const live=active?`<div class="home-live-line"><b>LIVE · ${COURSE_DATA[active].name}</b><span>${homeLiveEventText(active)}</span></div>`:'';
-  return`<div class="home-comp-section"><div class="home-section-head"><div><h3>${final?'Final C-Bum Cup':'C-Bum Cup points race'}</h3><span>${note}</span></div>${final?'<span class="home-state-pill">FINAL</span>':''}</div><div class="home-cup-grid">${rows.map((r,i)=>`<div class="home-cup-player ${i===0&&completed.length?'leader':''}"><small>${i+1}</small><span>${playerLabel(r.p)}</span><b>${fmtPts(r.pts)}</b><em>pts</em></div>`).join('')}</div>${live}</div>`;
+  return`<div class="home-comp-section"><div class="home-section-head"><div><h3><span class="brand-peach">🍑</span>${final?'Final C-Bum Cup':'C-Bum Cup points race'}</h3><span>${note}</span></div>${final?'<span class="home-state-pill">FINAL</span>':''}</div><div class="home-cup-grid">${rows.map((r,i)=>`<div class="home-cup-player ${i===0&&completed.length?'leader':''}"><small>${i+1}</small><span>${playerLabel(r.p)}</span><b>${fmtPts(r.pts)}</b><em>pts</em></div>`).join('')}</div>${live}</div>`;
 }
 function homeSeedGrid(rows,label){
   return`<div class="home-seed-label">${label}</div><div class="home-seed-grid">${rows.map((r,i)=>`<div><small>${i+1}</small><span>${playerLabel(r.p)}</span><b>${fmtPts(r.pts)} pts</b></div>`).join('')}</div>`;
