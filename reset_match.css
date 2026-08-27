@@ -1,0 +1,11 @@
+/* v3.2 granular reset controls */
+.reset-tools{margin-top:14px;background:linear-gradient(180deg,#fbf5e9,#f2eadb)}
+.reset-tools summary{cursor:pointer;font-family:var(--club);font-size:14px;color:#6c4038;letter-spacing:.2px;list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:34px}
+.reset-tools summary::-webkit-details-marker{display:none}
+.reset-tools summary:after{content:'▾';font-family:var(--sans);font-size:12px;color:#8b726a}
+.reset-tools[open] summary:after{content:'▴'}
+.reset-tools .tiny{margin:8px 0 10px}
+.reset-unit-grid{display:grid;grid-template-columns:1fr;gap:7px}
+.reset-unit-btn{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
+.reset-unit-btn span{display:block;font-size:10px;font-weight:600;opacity:.8;text-align:right;max-width:58%;line-height:1.2}
+@media(min-width:620px){.reset-unit-grid{grid-template-columns:repeat(2,1fr)}.reset-unit-grid .reset-unit-btn:only-child{grid-column:1/-1}}
