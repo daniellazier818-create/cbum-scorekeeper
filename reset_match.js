@@ -34,24 +34,22 @@ function resetCompetitionUnit(c,kind,index=null){
   state.ui.round=c;state.ui.hole=0;state.ui.liveExpanded=false;
   save();render();window.scrollTo({top:0,behavior:'smooth'});toast(`${kind==='semi'||kind==='dornoch'?'Match':'Round'} scoring reset`);
 }
-function renderResetScoringTools(c){
+function renderResetButtons(c){
   const spectator=typeof isScorer==='function'&&!isScorer();if(spectator)return'';
   const e=COURSE_DATA[c].event;
-  let buttons='';
-  if(e==='semis'){
-    buttons=semis().map((m,i)=>`<button class="btn danger small reset-unit-btn" data-reset-unit="semi" data-reset-c="${c}" data-reset-index="${i}">Reset Semi ${i+1}<span>${m.map(playerLabel).join(' vs ')}</span></button>`).join('');
-  }else if(e==='finals'){
-    const fm=finalMatches();if(fm)buttons=`<button class="btn danger small reset-unit-btn" data-reset-unit="dornoch" data-reset-c="${c}" data-reset-index="0">Reset Championship<span>${fm.champ.map(playerLabel).join(' vs ')}</span></button><button class="btn danger small reset-unit-btn" data-reset-unit="dornoch" data-reset-c="${c}" data-reset-index="1">Reset Consolation<span>${fm.consolation.map(playerLabel).join(' vs ')}</span></button>`;
-  }else{
-    buttons=`<button class="btn danger small reset-unit-btn" data-reset-unit="round" data-reset-c="${c}">Reset this round's scoring<span>Leaves every other competition result untouched</span></button>`;
+  if(e==='semis')return semis().map((m,i)=>`<button class="btn danger small reset-unit-btn" data-reset-unit="semi" data-reset-c="${c}" data-reset-index="${i}">Reset Semi ${i+1}<span>${m.map(playerLabel).join(' vs ')}</span></button>`).join('');
+  if(e==='finals'){
+    const fm=finalMatches();if(!fm)return'';
+    return`<button class="btn danger small reset-unit-btn" data-reset-unit="dornoch" data-reset-c="${c}" data-reset-index="0">Reset Championship<span>${fm.champ.map(playerLabel).join(' vs ')}</span></button><button class="btn danger small reset-unit-btn" data-reset-unit="dornoch" data-reset-c="${c}" data-reset-index="1">Reset Consolation<span>${fm.consolation.map(playerLabel).join(' vs ')}</span></button>`;
   }
-  return`<details class="card reset-tools"><summary>Scoring tools</summary><p class="tiny">Use this for test scores, a mistaken start, or a restart. Setup locks and pairings are preserved.</p><div class="reset-unit-grid">${buttons}</div></details>`;
+  return`<button class="btn danger small reset-unit-btn" data-reset-unit="round" data-reset-c="${c}">Reset this round's scoring<span>Other competition results stay intact</span></button>`;
 }
-const resetBaseRenderRound=renderRound;
-renderRound=function(c){
-  const html=resetBaseRenderRound(c);if(!roundLocked(c))return html;
-  return html+renderResetScoringTools(c);
-};
+function renderResetScoringTools(c){
+  const buttons=renderResetButtons(c);if(!buttons)return'';
+  return`<div class="dashboard-reset"><div class="dashboard-reset-head"><span>Scoring tools</span><small>For test scores, mistakes, or a restart</small></div><div class="reset-unit-grid">${buttons}</div><div class="reset-preserve-note">Setup locks, tees, Handicap Index snapshots, pairings and every other match are preserved.</div></div>`;
+}
+const resetBaseRoundDashboard=renderRoundDashboard;
+renderRoundDashboard=function(c){return resetBaseRoundDashboard(c)+renderResetScoringTools(c)};
 document.addEventListener('click',e=>{
   const btn=e.target.closest?.('[data-reset-unit]');if(!btn)return;
   e.preventDefault();
