@@ -9,7 +9,7 @@ function freshState(){let scores={},wolfCalls={};Object.keys(COURSE_DATA).forEac
 let state=loadState();
 function loadState(){try{const x=JSON.parse(localStorage.getItem(STORAGE));if(x&&(x.version===1||x.version===2)){const m=mergeState(freshState(),x);m.version=2;if(m.ui.autoAdvance==null)m.ui.autoAdvance=true;if(m.ui.compact==null)m.ui.compact=true;return m}}catch(e){}return freshState()}
 function mergeState(base,x){Object.assign(base,x);base.players={...base.players,...(x.players||{})};base.tees={...base.tees,...(x.tees||{})};Object.keys(base.scores).forEach(c=>{base.scores[c]={...base.scores[c],...((x.scores||{})[c]||{})};PLAYER_ORDER.forEach(p=>{if(!Array.isArray(base.scores[c][p]))base.scores[c][p]=Array(18).fill(null);});});base.ui={...base.ui,...(x.ui||{})};base.manual={...base.manual,...(x.manual||{})};base.locks={...base.locks,...(x.locks||{})};return base}
-let saveTimer;function save(){document.getElementById('saveState').textContent='Saving';clearTimeout(saveTimer);saveTimer=setTimeout(()=>{localStorage.setItem(STORAGE,JSON.stringify(state));document.getElementById('saveState').textContent='Saved'},120)}
+let saveTimer;function save(){document.getElementById('saveState').textContent='Saving';clearTimeout(saveTimer);saveTimer=setTimeout(()=>{localStorage.setItem(STORAGE,JSON.stringify(state));document.getElementById('saveState').textContent='Saved';if(typeof scheduleLivePublish==='function')scheduleLivePublish()},120)}
 function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1100)}
 function courseTee(c,p){return COURSE_DATA[c].tees[state.tees[c][p]]}
 function ratingTuple(c,p){const t=courseTee(c,p);const g=state.players[p].gender;return t[g]||null}
