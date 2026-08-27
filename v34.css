@@ -1,0 +1,21 @@
+/* v3.4 peach branding */
+.crest.peachmark{
+  font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif!important;
+  font-size:25px!important;
+  line-height:1;
+  letter-spacing:0!important;
+  background:radial-gradient(circle at 35% 30%,#f2dfaa,var(--gold));
+  color:inherit;
+}
+.brand-peach{
+  display:inline-block;
+  font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif!important;
+  font-size:.9em;
+  line-height:1;
+  vertical-align:-.08em;
+  margin-right:.22em;
+  letter-spacing:0!important;
+}
+.navbtn[data-tab="standings"] span{
+  font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+}
