@@ -4,10 +4,10 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#eee6d4",
+  "background_color": "#0b2b20",
   "theme_color": "#0b2b20",
   "description": "Scotland 2026 C-Bum Cup golf trip scorekeeper",
   "icons": [
-    {"src":"icon.svg?v=3.4","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {"src":"icon.svg?v=3.5","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
   ]
 }
