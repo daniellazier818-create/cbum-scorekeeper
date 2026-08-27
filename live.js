@@ -53,3 +53,15 @@ function render(){
   bind();
   applyLiveMode();
 }
+
+function renderLiveSettings(){return`<div class="card"><div class="eyebrow">Shared scoring</div><h2>${liveLabel()}</h2><p class="muted">${isScorer()?'This device is the scoring authority. Every saved change publishes to the shared leaderboard when online.':'This device is read-only and follows the scorer. Scores refresh automatically.'}</p><div class="notice ${isScorer()?'note-green':''}">${liveAge()}</div>${isScorer()?`<button class="btn secondary" style="margin-top:10px" data-scorer-disable>Leave scorer mode</button>`:`<div style="margin-top:10px"><label>Scorer setup code</label><div class="row"><input class="field" type="password" autocomplete="off" placeholder="CBUM-…" data-scorer-code><button class="btn" data-scorer-enable>Enable scoring</button></div><div class="tiny" style="margin-top:6px">Only the designated scorer needs this. Everyone else should stay in spectator mode.</div></div>`}</div>`}
+const baseRenderSettings=renderSettings;
+renderSettings=function(){return renderLiveSettings()+baseRenderSettings()}
+
+document.addEventListener('click',async e=>{
+  const on=e.target.closest?.('[data-scorer-enable]');
+  if(on){const input=document.querySelector('[data-scorer-code]');on.disabled=true;on.textContent='Checking…';const ok=await enableScorer(input?.value);if(ok){toast('Scorer mode enabled');render()}else{on.disabled=false;on.textContent='Enable scoring';alert('That scorer setup code was not accepted.')}}
+  const off=e.target.closest?.('[data-scorer-disable]');
+  if(off&&confirm('Leave scorer mode on this device? It will become read-only.')){disableScorer();toast('Spectator mode');render()}
+});
+window.addEventListener('load',startLive,{once:true});
