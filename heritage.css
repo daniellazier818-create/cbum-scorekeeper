@@ -1,0 +1,54 @@
+/* v2.8 Scottish heritage typography overrides */
+.brand h1{
+  font-family:'Uncial Antiqua',Georgia,serif!important;
+  font-size:23px!important;
+  font-weight:400!important;
+  letter-spacing:.15px!important;
+  line-height:1!important;
+}
+.brand small,.eyebrow,.round .date,.round .status,.metriclabel,.table th,label,.navbtn,.livebar .detail{
+  font-family:'IM Fell English SC',Georgia,serif!important;
+}
+.crest{
+  font-family:'IM Fell English SC',Georgia,serif!important;
+  letter-spacing:.5px;
+}
+h2{
+  font-family:'IM Fell English SC',Georgia,serif!important;
+  font-weight:400!important;
+  font-size:29px!important;
+  letter-spacing:.1px;
+}
+h3,.pname,.stand-player,.livebar .main,.hole-title .num,.rank{
+  font-family:'Cormorant Garamond',Georgia,serif!important;
+}
+.round .rtitle{
+  font-family:'Uncial Antiqua',Georgia,serif!important;
+  font-size:16px!important;
+  font-weight:400!important;
+  line-height:1.18;
+  letter-spacing:0!important;
+}
+.continue-card h2{
+  font-family:'Uncial Antiqua',Georgia,serif!important;
+  font-size:27px!important;
+  font-weight:400!important;
+}
+.hole-title .eyebrow{
+  font-family:'Uncial Antiqua',Georgia,serif!important;
+  text-transform:none!important;
+  letter-spacing:0!important;
+  font-size:15px!important;
+}
+/* Make the competition-book identity visibly old-club even if remote fonts are slow. */
+.card>.eyebrow:first-child{
+  letter-spacing:1.35px!important;
+}
+.round .rformat,.tiny,.muted,.sub,.netline,.score-chip,.btn,.field{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',Inter,Arial,sans-serif;
+}
+@media(max-width:420px){
+  .brand h1{font-size:21px!important}
+  h2{font-size:27px!important}
+  .round .rtitle{font-size:15px!important}
+}
