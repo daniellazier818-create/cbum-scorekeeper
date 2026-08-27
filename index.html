@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#163a2b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="C-Bum Cup" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="styles.css" />
+<title>C-Bum Cup Scorekeeper</title>
+</head>
+<body>
+<header><div class="brand"><div class="brandmark"><div class="crest">CB</div><div><h1>C-Bum Cup Scorekeeper</h1><small>Scotland 2026 · v2.4</small></div></div><div id="saveState" class="pill" style="background:rgba(255,255,255,.14);color:white">Saved</div></div></header>
+<main id="app"></main>
+<nav class="bottomnav">
+<button class="navbtn active" data-tab="rounds"><span>⛳</span>Rounds</button>
+<button class="navbtn" data-tab="standings"><span>🏆</span>C-Bum</button>
+<button class="navbtn" data-tab="bracket"><span>🥊</span>Bracket</button>
+<button class="navbtn" data-tab="settings"><span>⚙️</span>Setup</button>
+</nav>
+<div id="toast" class="toast">Saved</div>
+<script src="data.js"></script>
+<script src="core1.js"></script>
+<script src="core2.js"></script>
+<script src="core3.js"></script>
+<script src="render1.js"></script>
+<script src="render2.js"></script>
+<script src="render3.js"></script>
+<script src="bind.js"></script>
+</body>
+</html>
