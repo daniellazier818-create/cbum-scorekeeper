@@ -41,5 +41,7 @@ function moveWolf(i,d){const j=i+d;if(j<0||j>=4)return;if(roundLocked('brora')){
 function exportState(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cbum-scorekeeper-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Backup exported')}
 function importState(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);state=mergeState(freshState(),x);Object.keys(COURSE_DATA).forEach(c=>{if(roundHasAnyData(c)&&!state.roundLocks[c])state.roundLocks[c]=createRoundSnapshot(c,'imported')});save();render();toast('Backup imported')}catch(err){alert('That backup file could not be read.')}};r.readAsText(f)}
 document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>{state.ui.tab=b.dataset.tab;if(state.ui.tab!=='rounds')state.ui.round=null;state.ui.liveExpanded=false;state.ui.holeResult=null;save();render();window.scrollTo(0,0)});
-if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker'in navigator&&location.protocol.startsWith('http')){
+  navigator.serviceWorker.register('sw.js?v=3.2.3',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+}
 render();
