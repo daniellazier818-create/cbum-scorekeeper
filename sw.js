@@ -1,5 +1,5 @@
-const CACHE='cbum-cup-v3-7-travel-dossier';
-const ASSETS=['./','./index.html','./styles.css','./heritage.css','./ux.css','./v3patch.css?v=3.6.1','./live_detail.css','./reset_match.css','./v33.css','./v34.css','./travel.css?v=3.7','./data.js','./core1.js','./core2.js','./core3.js','./render1.js','./render2.js','./render3.js','./standings_layout.js','./ux.js','./rounds_summary.js','./v3patch.js?v=3.6.1','./live_detail.js','./reset_match.js','./travel.js?v=3.7','./live.js','./bind.js?v=3.7','./manifest.webmanifest?v=3.5','./icon.svg?v=3.5'];
+const CACHE='cbum-cup-v3-7-1-travel-routing';
+const ASSETS=['./','./index.html','./styles.css','./heritage.css','./ux.css','./v3patch.css?v=3.6.1','./live_detail.css','./reset_match.css','./v33.css','./v34.css','./travel.css?v=3.7','./data.js','./core1.js','./core2.js','./core3.js','./render1.js','./render2.js','./render3.js','./standings_layout.js','./ux.js','./rounds_summary.js','./v3patch.js?v=3.6.1','./live_detail.js','./reset_match.js','./travel.js?v=3.7','./live.js','./travel_fix.js?v=3.7.1','./bind.js?v=3.7','./manifest.webmanifest?v=3.5','./icon.svg?v=3.5'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
