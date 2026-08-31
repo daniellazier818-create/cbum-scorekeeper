@@ -1,0 +1,43 @@
+/* v3.7 travel dossier */
+.bottomnav{grid-template-columns:repeat(5,1fr)}
+.navbtn{min-width:0;padding-left:2px;padding-right:2px}
+.travel-hero{overflow:hidden}
+.travel-summary{font-size:12px;color:var(--muted);margin:2px 0 12px}
+.travel-day-picker{display:flex;gap:6px;overflow-x:auto;padding:2px 1px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.travel-day-picker::-webkit-scrollbar{display:none}
+.travel-day{flex:0 0 49px;min-height:64px;border:1px solid #cfc4ad;border-radius:8px;background:#f5edde;color:var(--green);display:grid;place-items:center;padding:5px 3px;font-family:var(--club);cursor:pointer}
+.travel-day span{font-size:9px;line-height:1;color:var(--muted);letter-spacing:.4px}
+.travel-day b{font-family:var(--serif);font-size:23px;line-height:1}
+.travel-day small{font-size:8px;line-height:1;color:var(--muted)}
+.travel-day.active{background:linear-gradient(180deg,var(--green3),var(--green));color:#fff8e8;border-color:var(--gold);box-shadow:inset 0 0 0 1px rgba(213,189,122,.22)}
+.travel-day.active span,.travel-day.active small{color:#eadfbe}
+.travel-source{margin-top:6px;color:#7a766d}
+.travel-timeline{position:relative}
+.travel-event{display:grid;grid-template-columns:70px minmax(0,1fr);gap:9px;position:relative;margin-bottom:10px}
+.travel-event:before{content:'';position:absolute;left:68px;top:14px;bottom:-13px;width:1px;background:#c9bea6}
+.travel-event:last-child:before{display:none}
+.travel-time{font-family:var(--club);font-size:11px;color:var(--green2);text-align:right;padding:12px 8px 0 0;line-height:1.15;letter-spacing:.15px}
+.travel-event-body{position:relative;background:linear-gradient(180deg,#fffaf0,#f6edde);border:1px solid #cfc2a8;border-radius:9px;padding:11px;box-shadow:0 3px 12px rgba(11,43,32,.05)}
+.travel-event-body:before{content:'';position:absolute;left:-14px;top:15px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid #e7d6aa;box-shadow:0 0 0 2px var(--cream)}
+.travel-event-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}
+.travel-cat{font-family:var(--club);font-size:9px;color:#6a766b;letter-spacing:.3px;text-transform:uppercase}
+.travel-status{font-family:var(--club);font-size:8px;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:4px 6px;border:1px solid}
+.travel-status.booked{background:#e3ebe0;border-color:#a7b9a3;color:#2f5a3b}
+.travel-status.pending{background:#eee3bf;border-color:#ccb36d;color:#665018}
+.travel-status.flexible{background:#e5e8e4;border-color:#bcc4bb;color:#586159}
+.travel-status.unbooked{background:#ecd9d3;border-color:#d0a9a0;color:#753d36}
+.travel-event h3{font-size:18px;margin:0 0 4px;line-height:1.08}
+.travel-route{font-size:10px;color:var(--green3);font-weight:750;margin-top:4px}
+.travel-notes{font-size:11px;line-height:1.4;color:var(--muted);margin-top:5px;white-space:pre-line}
+.travel-vendor{margin-top:9px;padding-top:8px;border-top:1px solid #ded4c1}
+.travel-vendor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.travel-vendor-head b{display:block;font-family:var(--serif);font-size:14px;color:var(--green);line-height:1.05}
+.travel-vendor-head span{display:block;font-size:9px;color:var(--muted);margin-top:1px}
+.travel-contact-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+a.travel-contact{display:inline-flex;align-items:center;justify-content:center;min-height:29px;border-radius:6px;padding:5px 7px;border:1px solid #bfc9bc;background:#e9eee5;color:var(--green);text-decoration:none;font-size:9px;font-weight:800}
+.travel-vendor-detail{font-size:9px;line-height:1.35;color:#667066;margin-top:4px;overflow-wrap:anywhere}
+.travel-vendor-note{font-size:9px;line-height:1.35;color:#795e24;background:#f2e8c9;border:1px solid #dcc88f;border-radius:6px;padding:5px 6px;margin-top:5px}
+@media(max-width:390px){
+ .travel-event{grid-template-columns:61px minmax(0,1fr);gap:8px}.travel-event:before{left:59px}.travel-time{font-size:10px;padding-right:7px}.travel-vendor-head{display:block}.travel-contact-row{justify-content:flex-start;margin-top:6px}
+ .navbtn{font-size:9px}.navbtn span{font-size:18px}
+}
