@@ -1,12 +1,12 @@
 {
-  "name": "🍑 C-Bum Cup Scorekeeper",
+  "name": "🍑 C-Bum Cup · Scotland 2026 Trip Companion",
   "short_name": "C-Bum Cup",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0b2b20",
   "theme_color": "#0b2b20",
-  "description": "Scotland 2026 C-Bum Cup golf trip scorekeeper",
+  "description": "Scotland 2026 trip companion for the C-Bum Cup: golf scoring, live standings, match-play bracket, travel itinerary and vendor contacts.",
   "icons": [
     {"src":"icon.svg?v=3.5","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
   ]
