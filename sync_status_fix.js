@@ -1,8 +1,8 @@
-/* sync status consistency patch */
+/* sync status consistency + consumer-facing header cleanup */
 function scorerSyncStatus(){
-  if(!navigator.onLine||liveStatus==='error')return{header:'OFFLINE · LOCAL',label:'Offline · saved locally'};
-  if(liveStatus==='syncing'||liveStatus==='offline')return{header:'LIVE · SYNCING',label:'Live · syncing'};
-  return{header:'LIVE · SYNCED',label:'Live · synced'};
+  if(!navigator.onLine||liveStatus==='error')return{header:'Offline',label:'Offline · saved locally',problem:true};
+  if(liveStatus==='syncing'||liveStatus==='offline')return{header:'',label:'Live · syncing',problem:false};
+  return{header:'',label:'Live · synced',problem:false};
 }
 
 liveLabel=function(){
@@ -12,7 +12,11 @@ liveLabel=function(){
 
 setLiveHeader=function(){
   const el=document.getElementById('saveState');if(!el)return;
-  el.textContent=isScorer()?scorerSyncStatus().header:'LIVE VIEW';
+  const status=isScorer()?scorerSyncStatus():{header:'',problem:false};
+  el.textContent=status.header;
+  el.hidden=!status.problem;
+  el.classList.toggle('problem',!!status.problem);
+  el.setAttribute('aria-label',status.problem?'Scoring is offline and saved locally':'Sync healthy');
 };
 
 renderConnectionStrip=function(){
