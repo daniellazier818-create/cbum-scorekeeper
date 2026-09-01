@@ -19,3 +19,17 @@
 .navbtn[data-tab="standings"] span{
   font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
 }
+.sync-indicator[hidden]{display:none!important}
+.sync-indicator.problem{
+  position:relative;
+  z-index:2;
+  align-self:center;
+  padding:4px 7px;
+  border:1px solid rgba(213,189,122,.24);
+  border-radius:999px;
+  background:rgba(0,0,0,.10);
+  color:rgba(255,250,240,.72);
+  font:600 10px/1.1 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
