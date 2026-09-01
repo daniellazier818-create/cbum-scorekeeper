@@ -1,7 +1,7 @@
-/* Travel dossier flight-status actions */
+/* Travel dossier FlightAware status actions */
 const TRAVEL_FLIGHT_STATUS={
-  UA118:'https://www.united.com/en/us/flightstatus/details/118/2026-09-03/ORD/EDI/UA',
-  UA119:'https://www.united.com/en/us/flightstatus/details/119/2026-09-13/EDI/ORD/UA'
+  UA118:'https://www.flightaware.com/live/flight/UAL118',
+  UA119:'https://www.flightaware.com/live/flight/UAL119'
 };
 
 function travelFlightStatusHtml(e){
@@ -9,7 +9,7 @@ function travelFlightStatusHtml(e){
   if(!match)return'';
   const flight='UA'+match[1],url=TRAVEL_FLIGHT_STATUS[flight];
   if(!url)return'';
-  return`<div class="travel-contact-row" style="margin-top:10px"><a class="travel-contact" href="${url}" target="_blank" rel="noopener">Flight status ↗</a></div>`;
+  return`<div class="travel-contact-row" style="margin-top:10px"><a class="travel-contact" href="${url}" target="_blank" rel="noopener">FlightAware ↗</a></div>`;
 }
 
 renderTravelEvent=function(e){
