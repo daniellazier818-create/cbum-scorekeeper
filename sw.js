@@ -1,4 +1,4 @@
-const CACHE='cbum-cup-flightaware-status-links';
+const CACHE='scotland-2026-trip-companion-header';
 const ASSETS=['./','./index.html','./styles.css','./heritage.css','./ux.css','./v3patch.css?v=3.6.1','./live_detail.css','./reset_match.css','./v33.css','./v34.css?v=3.7.2-status2','./travel.css?v=3.7','./data.js','./core1.js','./core2.js','./core3.js','./render1.js','./render2.js','./render3.js?v=3.7.2','./standings_layout.js','./ux.js','./rounds_summary.js','./v3patch.js?v=3.6.1','./live_detail.js','./reset_match.js','./travel.js?v=3.7','./flight_status.js?v=3','./live.js','./sync_status_fix.js?v=2','./travel_fix.js?v=3.7.1','./bind.js?v=3.7.2','./manifest.webmanifest?v=3.7.2-companion','./icon.svg?v=3.5'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
