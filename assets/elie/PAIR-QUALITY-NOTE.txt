@@ -1,0 +1,1 @@
+The prior Elie pair sprites were only about 3 KB each and visibly degraded. Replacement target is roughly 400 px per hole at JPEG quality 92, preserving the original Golfshot routing and yardage overlays.
