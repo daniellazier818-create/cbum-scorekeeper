@@ -1,30 +1,31 @@
 /* Travel dossier consumer polish: contacts, status cleanup, day-pack guidance */
 TRAVEL_VENDORS.edenclubtransport={
   name:'The Eden Club Concierge',
-  role:'Pittormie / local car service contact',
+  role:'Pittormie / Fife car service contact',
   phone:'+44 (0) 1334 870 088',
   tel:'+441334870088',
   email:'concierge@theedenclub.com',
   note:'Isla & Caitlin'
 };
 
-/* Eden Club concierge is the transport contact for the early-trip service through North Berwick. */
-TRAVEL_DAYS.filter(d=>d.key<='2026-09-07').forEach(d=>d.events.forEach(e=>{
-  if(e.vendor==='localtransport')e.vendor='edenclubtransport';
+/* Every pre-transfer-day car movement is handled through Eden Club concierge. */
+TRAVEL_DAYS.filter(d=>d.key<'2026-09-08').forEach(d=>d.events.forEach(e=>{
+  const carMove=e.cat==='Ground Transport'||(/^(Drive|Ride)\b/i.test(e.title||''));
+  if(carMove)e.vendor='edenclubtransport';
 }));
 
 const TRAVEL_DAY_PACKS={
   '2026-09-05':{
-    title:'Straight from Kingsbarns to dinner',
-    text:'No full dinner outfit needed. If you want to freshen up after golf, leave a clean shirt or knit, fresh socks and casual shoes in the vehicle. Golf trousers are fine for The Inn at Kingsbarns.'
+    title:'Kingsbarns → dinner',
+    text:'Plan to go to dinner in golf clothes. No change needed. Optional comfort items for the car: a clean shirt or knit, fresh socks and casual shoes.'
   },
   '2026-09-07':{
     title:'Jinner night · North Berwick → Ship Inn',
-    text:'You will not be back at Pittormie before dinner. Pack the full head-to-toe denim Jinner outfit, clean underwear/socks and casual shoes, plus a small deodorant/grooming kit. Change at North Berwick after golf.'
+    text:'You will not be back at Pittormie before dinner. Pack the full head-to-toe denim Jinner outfit, clean underwear/socks, casual shoes and a small deodorant/grooming kit. Change at North Berwick after golf.'
   },
   '2026-09-08':{
     title:'Transfer day · Dunkeld + The Hermitage',
-    text:'Wear comfortable walking shoes and travel layers from the start. Keep spare dry socks and a clean top handy. No separate dinner outfit needs to live in the day pack because you reach Dornoch Station before dinner.'
+    text:'Wear comfortable walking shoes and travel layers from the start. Keep spare dry socks and a clean top handy. You reach Dornoch Station before dinner, so no dinner change needs to stay in the day pack.'
   },
   '2026-09-09':{
     title:'Kilt night · Castle Stuart → Hootananny',
@@ -32,15 +33,15 @@ const TRAVEL_DAY_PACKS={
   },
   '2026-09-10':{
     title:'Brora → Royal Marine dinner',
-    text:'No hotel stop after golf. Pack a simple pub-smart change: clean trousers or dark jeans, collared shirt or knit, fresh socks and clean casual shoes. No jacket required.'
+    text:'Plan to go to dinner in golf clothes. No change needed. Optional: pack a dry shirt/base layer, fresh socks and comfortable shoes if you want to freshen up after the round.'
   },
   '2026-09-11':{
     title:'Royal Dornoch → clubhouse dinner → Aberdeen',
-    text:'No full change is necessary. Clean golf attire works for the Royal Dornoch clubhouse. Optional: dry shirt/base layer, fresh socks and comfortable shoes for the long evening drive to Aberdeen.'
+    text:'Plan to go to dinner in golf clothes. No change needed. Optional: pack a dry shirt/base layer, fresh socks and comfortable shoes for the long evening drive to Aberdeen.'
   },
   '2026-09-12':{
     title:'Trump → Cock & Bull → Edinburgh',
-    text:'The Cock & Bull is casual, so golf attire is fine. Optional: pack a clean shirt, fresh socks and comfortable shoes for dinner and the 2h45 transfer. Your full luggage is traveling with you.'
+    text:'Plan to go to dinner in golf clothes. No change needed. Optional: pack a clean shirt, fresh socks and comfortable shoes for the 2h45 transfer. Your full luggage is traveling with you.'
   }
 };
 
