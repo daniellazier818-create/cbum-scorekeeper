@@ -1,0 +1,63 @@
+/* Travel dossier consumer polish: contacts, status cleanup, day-pack guidance */
+TRAVEL_VENDORS.edenclubtransport={
+  name:'The Eden Club Concierge',
+  role:'Pittormie / local car service contact',
+  phone:'+44 (0) 1334 870 088',
+  tel:'+441334870088',
+  email:'concierge@theedenclub.com',
+  note:'Isla & Caitlin'
+};
+
+/* Eden Club concierge is the transport contact for the early-trip service through North Berwick. */
+TRAVEL_DAYS.filter(d=>d.key<='2026-09-07').forEach(d=>d.events.forEach(e=>{
+  if(e.vendor==='localtransport')e.vendor='edenclubtransport';
+}));
+
+const TRAVEL_DAY_PACKS={
+  '2026-09-05':{
+    title:'Straight from Kingsbarns to dinner',
+    text:'No full dinner outfit needed. If you want to freshen up after golf, leave a clean shirt or knit, fresh socks and casual shoes in the vehicle. Golf trousers are fine for The Inn at Kingsbarns.'
+  },
+  '2026-09-07':{
+    title:'Jinner night · North Berwick → Ship Inn',
+    text:'You will not be back at Pittormie before dinner. Pack the full head-to-toe denim Jinner outfit, clean underwear/socks and casual shoes, plus a small deodorant/grooming kit. Change at North Berwick after golf.'
+  },
+  '2026-09-08':{
+    title:'Transfer day · Dunkeld + The Hermitage',
+    text:'Wear comfortable walking shoes and travel layers from the start. Keep spare dry socks and a clean top handy. No separate dinner outfit needs to live in the day pack because you reach Dornoch Station before dinner.'
+  },
+  '2026-09-09':{
+    title:'Kilt night · Castle Stuart → Hootananny',
+    text:'Cabot showers are available and you go directly to Inverness afterward. Pack each person’s complete kilt/tartan-night outfit, including the planned shirt, socks/hose, shoes and accessories, plus clean underwear and a small grooming kit. Keep it together in a garment/day bag in the vehicle.'
+  },
+  '2026-09-10':{
+    title:'Brora → Royal Marine dinner',
+    text:'No hotel stop after golf. Pack a simple pub-smart change: clean trousers or dark jeans, collared shirt or knit, fresh socks and clean casual shoes. No jacket required.'
+  },
+  '2026-09-11':{
+    title:'Royal Dornoch → clubhouse dinner → Aberdeen',
+    text:'No full change is necessary. Clean golf attire works for the Royal Dornoch clubhouse. Optional: dry shirt/base layer, fresh socks and comfortable shoes for the long evening drive to Aberdeen.'
+  },
+  '2026-09-12':{
+    title:'Trump → Cock & Bull → Edinburgh',
+    text:'The Cock & Bull is casual, so golf attire is fine. Optional: pack a clean shirt, fresh socks and comfortable shoes for dinner and the 2h45 transfer. Your full luggage is traveling with you.'
+  }
+};
+
+function travelDayPackHtml(day){
+  const p=TRAVEL_DAY_PACKS[day.key];
+  if(!p)return'';
+  return`<div class="card" style="margin-top:12px"><div class="eyebrow">Day pack</div><h3 style="margin-bottom:7px">${p.title}</h3><p class="muted" style="margin:0">${p.text}</p></div>`;
+}
+
+/* Consumer view: remove planning-status badges while preserving category, contacts and route actions. */
+renderTravelEvent=function(e){
+  const maps=typeof travelGroundDirectionsHtml==='function'?travelGroundDirectionsHtml(e):'';
+  const flight=typeof travelFlightStatusHtml==='function'?travelFlightStatusHtml(e):'';
+  return`<div class="travel-event"><div class="travel-time">${e.time}</div><div class="travel-event-body"><div class="travel-event-top"><span class="travel-cat">${travelCatIcon(e.cat)} ${e.cat}</span></div><h3>${e.title}</h3>${e.route?`<div class="travel-route">↗ ${e.route}</div>`:''}${e.notes?`<div class="travel-notes">${e.notes}</div>`:''}${travelVendorHtml(e.vendor)}${maps}${flight}</div></div>`;
+};
+
+renderTravel=function(){
+  const key=travelSelectedDay(),day=TRAVEL_DAYS.find(d=>d.key===key);
+  return`<div class="card travel-hero"><div class="eyebrow">Travel dossier</div><h2>${day.long}</h2><div class="travel-day-picker">${TRAVEL_DAYS.map(d=>`<button class="travel-day ${d.key===key?'active':''}" data-travel-day="${d.key}"><span>${d.short}</span><b>${d.day}</b><small>${d.month}</small></button>`).join('')}</div><div class="tiny travel-source">Itinerary: Time Table_v2 · contacts shown are the trip’s working service contacts.</div></div>${travelDayPackHtml(day)}<div class="travel-timeline">${day.events.map(renderTravelEvent).join('')}</div>`;
+};
