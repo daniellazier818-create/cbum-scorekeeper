@@ -51,11 +51,25 @@ function travelDayPackHtml(day){
   return`<div class="card" style="margin-top:12px"><div class="eyebrow">Day pack</div><h3 style="margin-bottom:7px">${p.title}</h3><p class="muted" style="margin:0">${p.text}</p></div>`;
 }
 
-/* Consumer view: remove planning-status badges while preserving category, contacts and route actions. */
+function travelMealStatusHtml(e){
+  if(e.cat!=='Meals')return'';
+  const labels={
+    'Booked':'Reservation',
+    'Flexible':'Flexible / informal',
+    'Pending':'Reservation pending',
+    'Not Yet Booked':'No reservation'
+  };
+  const label=labels[e.status];
+  if(!label)return'';
+  const cls=typeof travelStatusClass==='function'?travelStatusClass(e.status):'';
+  return`<span class="travel-status ${cls}">${label}</span>`;
+}
+
+/* Consumer view: hide planning-status badges except for useful meal reservation context. */
 renderTravelEvent=function(e){
   const maps=typeof travelGroundDirectionsHtml==='function'?travelGroundDirectionsHtml(e):'';
   const flight=typeof travelFlightStatusHtml==='function'?travelFlightStatusHtml(e):'';
-  return`<div class="travel-event"><div class="travel-time">${e.time}</div><div class="travel-event-body"><div class="travel-event-top"><span class="travel-cat">${travelCatIcon(e.cat)} ${e.cat}</span></div><h3>${e.title}</h3>${e.route?`<div class="travel-route">↗ ${e.route}</div>`:''}${e.notes?`<div class="travel-notes">${e.notes}</div>`:''}${travelVendorHtml(e.vendor)}${maps}${flight}</div></div>`;
+  return`<div class="travel-event"><div class="travel-time">${e.time}</div><div class="travel-event-body"><div class="travel-event-top"><span class="travel-cat">${travelCatIcon(e.cat)} ${e.cat}</span>${travelMealStatusHtml(e)}</div><h3>${e.title}</h3>${e.route?`<div class="travel-route">↗ ${e.route}</div>`:''}${e.notes?`<div class="travel-notes">${e.notes}</div>`:''}${travelVendorHtml(e.vendor)}${maps}${flight}</div></div>`;
 };
 
 renderTravel=function(){
