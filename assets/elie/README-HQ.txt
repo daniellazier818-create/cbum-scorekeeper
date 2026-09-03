@@ -1,0 +1,1 @@
+Elie Virtual Caddy hole plans are sourced from the user-provided Golfshot screenshots. HQ rebuild uses 706x1185 per-hole crops, paired side-by-side at 1412x1185 for the existing renderer.
