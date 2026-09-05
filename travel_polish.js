@@ -65,6 +65,19 @@ function travelMealStatusHtml(e){
   return`<span class="travel-status ${cls}">${label}</span>`;
 }
 
+/* Keep vendor markup aligned with travel.css. This deliberately replaces the older
+   travel-action markup so Safari does not fall back to raw blue links. */
+travelVendorHtml=function(id){
+  if(!id||!TRAVEL_VENDORS[id])return'';
+  const v=TRAVEL_VENDORS[id];
+  const actions=[];
+  if(v.tel)actions.push(`<a class="travel-contact" href="tel:${v.tel}">Call</a>`);
+  if(v.email)actions.push(`<a class="travel-contact" href="mailto:${v.email}">Email</a>`);
+  if(v.web)actions.push(`<a class="travel-contact" href="${v.web}" target="_blank" rel="noopener">Web</a>`);
+  const details=[v.phone,v.email].filter(Boolean).map(x=>`<span>${x}</span>`).join('');
+  return`<div class="travel-vendor"><div class="travel-vendor-head"><div class="travel-vendor-copy"><b>${v.name}</b>${v.role?`<span>${v.role}</span>`:''}</div>${actions.length?`<div class="travel-contact-row">${actions.join('')}</div>`:''}</div>${details?`<div class="travel-vendor-detail">${details}</div>`:''}${v.note?`<div class="travel-vendor-note">${v.note}</div>`:''}</div>`;
+};
+
 /* Consumer view: hide planning-status badges except for useful meal reservation context. */
 renderTravelEvent=function(e){
   const maps=typeof travelGroundDirectionsHtml==='function'?travelGroundDirectionsHtml(e):'';
