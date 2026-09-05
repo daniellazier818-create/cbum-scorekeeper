@@ -1,7 +1,8 @@
 const LIVE_EVENT='scotland-2026';
 const LIVE_BASE='https://xpfxvcpoufvvhxajqerf.supabase.co';
 const LIVE_KEY='sb_publishable_4pC56SU_q9gAn2AIQIAseQ_LoLRfslU';
-let liveTimer=null,livePoll=null,liveLastRemoteAt=null,liveStatus='offline',liveRevision=0,liveDirty=false,livePublishing=false;
+const LIVE_DIRTY_STORAGE='cbum-live-dirty-v1';
+let liveTimer=null,livePoll=null,liveLastRemoteAt=null,liveStatus='offline',liveRevision=0,liveDirty=localStorage.getItem(LIVE_DIRTY_STORAGE)==='1',livePublishing=false;
 
 /* Scoring is intentionally open for the trip. Kept for compatibility with existing UI helpers. */
 function isScorer(){return true}
@@ -20,6 +21,7 @@ function scheduleLivePublish(){
   clearTimeout(liveTimer);
   const revision=++liveRevision;
   liveDirty=true;
+  try{localStorage.setItem(LIVE_DIRTY_STORAGE,'1')}catch(e){}
   liveStatus=navigator.onLine?'syncing':'error';
   setLiveHeader();
   if(!navigator.onLine)return;
@@ -27,7 +29,7 @@ function scheduleLivePublish(){
     livePublishing=true;
     try{
       const result=await publishPayload(sharedPayload());
-      if(revision===liveRevision)liveDirty=false;
+      if(revision===liveRevision){liveDirty=false;try{localStorage.removeItem(LIVE_DIRTY_STORAGE)}catch(e){}}
       liveStatus='synced';
       liveLastRemoteAt=result?.updated_at||new Date().toISOString();
     }catch(e){liveStatus='error'}
@@ -56,7 +58,11 @@ async function fetchLive(){
 function enableScorer(){return Promise.resolve(true)}
 function disableScorer(){}
 function applyLiveMode(){setLiveHeader()}
-function startLive(){fetchLive();clearInterval(livePoll);livePoll=setInterval(fetchLive,5000)}
+function startLive(){
+  clearInterval(livePoll);
+  if(liveDirty){scheduleLivePublish();setTimeout(fetchLive,1200)}else fetchLive();
+  livePoll=setInterval(fetchLive,5000)
+}
 
 function render(){
   const app=document.getElementById('app');if(!app)return;
