@@ -52,10 +52,7 @@ const TRAVEL_DAYS=[
   {time:'12:10 PM',title:'Tee time at Elie',status:'Booked',cat:'Golf',notes:'Planned duration under 4h.',vendor:'elie'},
   {time:'4:00 PM',title:'Bop around Elie / East Neuk',status:'Flexible',cat:'Sightseeing'},
   {time:'5:30 PM',title:'Drive back to Pittormie',status:'Flexible',cat:'Travel',route:'30m drive',vendor:'localtransport'},
-  {time:'7:00 PM',title:'Ride to St. Andrews',status:'Booked',cat:'Ground Transport',vendor:'localtransport'},
-  {time:'7:30 PM',title:'Dinner at The Grange Inn',status:'Booked',cat:'Meals',route:'15m drive',notes:'£240 cancellation fee.',vendor:'grange'},
-  {time:'8:00 PM',title:'Drinks at The Dunvegan',status:'Flexible',cat:'Sightseeing',vendor:'dunvegan'},
-  {time:'9:00 PM',title:'Ride back to Pittormie',status:'Flexible',cat:'Ground Transport',vendor:'localtransport'}
+  {time:'7:00 PM',title:'Roast dinner at Pittormie',status:'Booked',cat:'Meals',notes:'Dinner at the castle.',vendor:'pittormie'}
  ]},
  {key:'2026-09-07',short:'Mon',day:'7',month:'Sep',long:'Monday, September 7',events:[
   {time:'Morning',title:'Breakfast / St. Andrews sightseeing',status:'Flexible',cat:'Sightseeing',notes:'St Rule’s Tower and St Andrews Castle. Sheet notes timing may be tight before the North Berwick lunch departure.',vendor:'pittormie'},
@@ -86,62 +83,57 @@ const TRAVEL_DAYS=[
   {time:'9:30 AM',title:'Drive to Glenmorangie',status:'Booked',cat:'Ground Transport',route:'13m from hotel',vendor:'luxuryhighland'},
   {time:'10:00 AM',title:'Glenmorangie Distillery tour',status:'Booked',cat:'Sightseeing',notes:'Planned duration 1h.',vendor:'glenmorangie'},
   {time:'11:30 AM',title:'Drive to Brora',status:'Booked',cat:'Ground Transport',route:'30m drive',vendor:'luxuryhighland'},
-  {time:'12:50 PM',title:'Tee time at Brora',status:'Booked',cat:'Golf',notes:'Planned duration 3h 50m.',vendor:'brora'},
-  {time:'6:30 PM',title:'Dinner at Royal Marine Hotel',status:'Booked',cat:'Meals',route:'Short walk from golf',notes:'Cozy pub; global cuisine.',vendor:'royalmarine'}
+  {time:'12:50 PM',title:'Tee time at Brora',status:'Booked',cat:'Golf',notes:'Planned duration 4h 15m.',vendor:'brora'},
+  {time:'6:30 PM',title:'Dinner at Royal Marine Hotel',status:'Booked',cat:'Meals',notes:'Plan to go to dinner in golf clothes. No change needed.',vendor:'royalmarine'}
  ]},
  {key:'2026-09-11',short:'Fri',day:'11',month:'Sep',long:'Friday, September 11',events:[
-  {time:'Morning',title:'TBD brunch',status:'Flexible',cat:'Meals',vendor:'dornochstation'},
-  {time:'Morning',title:'Drive to Dunrobin Castle',status:'Not Yet Booked',cat:'Travel',route:'22m drive',notes:'Dunrobin does not open until 10:00 AM.',vendor:'localtransport'},
+  {time:'Morning',title:'Brunch TBD',status:'Flexible',cat:'Meals'},
+  {time:'Morning',title:'Drive to Dunrobin Castle',status:'Not Yet Booked',cat:'Ground Transport',vendor:'localtransport'},
   {time:'Morning',title:'Visit Dunrobin Castle',status:'Not Yet Booked',cat:'Sightseeing',vendor:'dunrobin'},
-  {time:'12:00 PM',title:'Drive back to Dornoch',status:'Not Yet Booked',cat:'Travel',route:'22m drive',vendor:'localtransport'},
-  {time:'2:30 PM',title:'Tee time at Royal Dornoch',status:'Booked',cat:'Golf',route:'4m walk',notes:'Planned duration 4h 15m. Caddies added.',vendor:'royaldornoch'},
-  {time:'7:15 PM',title:'Dinner at Royal Dornoch Clubhouse',status:'Booked',cat:'Meals',notes:'Classic golf clubhouse.',vendor:'royaldornoch'},
-  {time:'8:15 PM',title:'Drive to Aberdeen',status:'Booked',cat:'Ground Transport',route:'3h 12m drive',vendor:'venture'},
-  {time:'Late Night',title:'Check in to Trump Aberdeen Hotel',status:'Booked',cat:'Lodging',vendor:'trump'}
+  {time:'12:00 PM',title:'Return to Dornoch',status:'Not Yet Booked',cat:'Ground Transport',vendor:'localtransport'},
+  {time:'2:30 PM',title:'Tee time at Royal Dornoch',status:'Booked',cat:'Golf',notes:'Planned duration 4h 15m. Caddies added.',vendor:'royaldornoch'},
+  {time:'7:15 PM',title:'Dinner at Royal Dornoch Clubhouse',status:'Booked',cat:'Meals',notes:'Plan to go to dinner in golf clothes. No change needed.',vendor:'royaldornoch'},
+  {time:'8:15 PM',title:'Drive to Aberdeen / Trump hotel',status:'Booked',cat:'Ground Transport',route:'~2h 45m',vendor:'venture'},
+  {time:'Late',title:'Check in to Trump Aberdeen Hotel',status:'Booked',cat:'Lodging',vendor:'trump'}
  ]},
  {key:'2026-09-12',short:'Sat',day:'12',month:'Sep',long:'Saturday, September 12',events:[
-  {time:'10:00 AM',title:'Breakfast at Trump Aberdeen',status:'Booked',cat:'Meals',vendor:'trump'},
-  {time:'12:12 PM',title:'Tee time at Trump Aberdeen',status:'Booked',cat:'Golf',notes:'Planned duration 4h 45m. Time Table_v2 notes Tony to reach out about caddies.',vendor:'trump'},
-  {time:'5:45 PM',title:'Drive to The Cock & Bull',status:'Pending',cat:'Ground Transport',route:'6m drive',vendor:'localtransport'},
-  {time:'6:00 PM',title:'Early dinner at The Cock & Bull',status:'Booked',cat:'Meals',vendor:'cockbull'},
-  {time:'7:15 PM',title:'Drive to Edinburgh',status:'Booked',cat:'Ground Transport',route:'2h 45m drive',vendor:'venture'},
-  {time:'10:00 PM',title:'Check in to DoubleTree Edinburgh Airport',status:'Booked',cat:'Lodging',vendor:'doubletree'}
+  {time:'10:00 AM',title:'Breakfast at Trump',status:'Booked',cat:'Meals',vendor:'trump'},
+  {time:'12:12 PM',title:'Tee time at Trump Scotland',status:'Booked',cat:'Golf',notes:'Planned duration 4h 45m.',vendor:'trump'},
+  {time:'5:45 PM',title:'Drive to The Cock & Bull',status:'Pending',cat:'Ground Transport',route:'~15m drive',vendor:'localtransport'},
+  {time:'6:00 PM',title:'Dinner at The Cock & Bull',status:'Booked',cat:'Meals',notes:'Plan to go to dinner in golf clothes. No change needed.',vendor:'cockbull'},
+  {time:'7:15 PM',title:'Drive to Edinburgh',status:'Booked',cat:'Ground Transport',route:'~2h 45m',vendor:'venture'},
+  {time:'10:00 PM',title:'Check in to DoubleTree EDI',status:'Booked',cat:'Lodging',vendor:'doubletree'}
  ]},
  {key:'2026-09-13',short:'Sun',day:'13',month:'Sep',long:'Sunday, September 13',events:[
-  {time:'9:30 AM',title:'Airport shuttle to EDI',status:'Booked',cat:'Ground Transport',vendor:'doubletree'},
+  {time:'9:30 AM',title:'Airport shuttle',status:'Booked',cat:'Ground Transport',vendor:'doubletree'},
   {time:'11:30 AM',title:'Depart on UA119',status:'Booked',cat:'Travel',vendor:'united'}
  ]}
 ];
 
 function travelDefaultDay(){
-  const now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
-  const exact=TRAVEL_DAYS.find(d=>{const x=new Date(d.key+'T12:00:00');return x.getFullYear()===now.getFullYear()&&x.getMonth()===now.getMonth()&&x.getDate()===now.getDate()});
-  if(exact)return exact.key;
+  const now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate(),12).getTime();
   return TRAVEL_DAYS.reduce((best,d)=>{
     const t=new Date(d.key+'T12:00:00').getTime(),delta=Math.abs(t-mid);
     return !best||delta<best.delta?{key:d.key,delta}:best;
   },null).key;
 }
-function travelSelectedDay(){return TRAVEL_DAYS.some(d=>d.key===state.ui.travelDay)?state.ui.travelDay:travelDefaultDay()}
-function travelStatusClass(s){return s==='Booked'?'booked':s==='Pending'?'pending':s==='Flexible'?'flexible':'unbooked'}
-function travelCatIcon(c){return({Travel:'✈️','Ground Transport':'🚐',Lodging:'🛏️',Meals:'🍴',Golf:'⛳',Sightseeing:'🏰'})[c]||'•'}
-function travelContactButton(label,href){return`<a class="travel-contact" href="${href}" ${href.startsWith('http')?'target="_blank" rel="noopener"':''}>${label}</a>`}
+function travelSelectedDay(){
+  if(!state.ui.travelDay||!TRAVEL_DAYS.some(d=>d.key===state.ui.travelDay))state.ui.travelDay=travelDefaultDay();
+  return state.ui.travelDay;
+}
+function travelCatIcon(cat){return{'Travel':'✈️','Ground Transport':'🚐','Lodging':'🛏️','Meals':'🍴','Golf':'⛳','Sightseeing':'🏰'}[cat]||'•'}
+function travelStatusClass(s){return s==='Booked'?'booked':s==='Pending'?'pending':s==='Not Yet Booked'?'open':'flexible'}
 function travelVendorHtml(id){
-  if(!id)return'';const v=TRAVEL_VENDORS[id];if(!v)return'';
-  const links=[v.tel?travelContactButton('Call','tel:'+v.tel):'',v.email?travelContactButton('Email','mailto:'+v.email):'',v.web?travelContactButton('Web',v.web):''].filter(Boolean).join('');
-  return`<div class="travel-vendor"><div class="travel-vendor-head"><div><b>${v.name}</b><span>${v.role}</span></div>${links?`<div class="travel-contact-row">${links}</div>`:''}</div>${v.phone||v.email?`<div class="travel-vendor-detail">${[v.phone,v.email].filter(Boolean).join(' · ')}</div>`:''}${v.address?`<div class="travel-vendor-detail">${v.address}</div>`:''}${v.note?`<div class="travel-vendor-note">${v.note}</div>`:''}</div>`;
+  if(!id||!TRAVEL_VENDORS[id])return'';
+  const v=TRAVEL_VENDORS[id];
+  const actions=[];
+  if(v.tel)actions.push(`<a class="travel-action" href="tel:${v.tel}">Call</a>`);
+  if(v.email)actions.push(`<a class="travel-action" href="mailto:${v.email}">Email</a>`);
+  if(v.web)actions.push(`<a class="travel-action" href="${v.web}" target="_blank" rel="noopener">Web</a>`);
+  return`<div class="travel-vendor"><div><b>${v.name}</b><span>${v.role||''}</span>${v.phone?`<small>${v.phone}</small>`:''}${v.email?`<small>${v.email}</small>`:''}${v.note?`<em>${v.note}</em>`:''}</div><div class="travel-actions">${actions.join('')}</div></div>`;
 }
 function renderTravelEvent(e){return`<div class="travel-event"><div class="travel-time">${e.time}</div><div class="travel-event-body"><div class="travel-event-top"><span class="travel-cat">${travelCatIcon(e.cat)} ${e.cat}</span><span class="travel-status ${travelStatusClass(e.status)}">${e.status}</span></div><h3>${e.title}</h3>${e.route?`<div class="travel-route">↗ ${e.route}</div>`:''}${e.notes?`<div class="travel-notes">${e.notes}</div>`:''}${travelVendorHtml(e.vendor)}</div></div>`}
 function renderTravel(){
-  const key=travelSelectedDay(),day=TRAVEL_DAYS.find(d=>d.key===key);
-  const booked=day.events.filter(e=>e.status==='Booked').length,open=day.events.length-booked;
-  return`<div class="card travel-hero"><div class="eyebrow">Travel dossier</div><h2>${day.long}</h2><div class="travel-summary"><b>${day.events.length}</b> itinerary items · <b>${booked}</b> booked${open?` · <b>${open}</b> flexible / open`:''}</div><div class="travel-day-picker">${TRAVEL_DAYS.map(d=>`<button class="travel-day ${d.key===key?'active':''}" data-travel-day="${d.key}"><span>${d.short}</span><b>${d.day}</b><small>${d.month}</small></button>`).join('')}</div><div class="tiny travel-source">Itinerary: Time Table_v2 · vendor contacts are public office contacts unless noted.</div></div><div class="travel-timeline">${day.events.map(renderTravelEvent).join('')}</div>`;
+  const key=travelSelectedDay(),day=TRAVEL_DAYS.find(d=>d.key===key),booked=day.events.filter(e=>e.status==='Booked').length,open=day.events.length-booked;
+  return`<div class="card travel-hero"><div class="eyebrow">Travel dossier</div><h2>${day.long}</h2><div class="travel-count">${day.events.length} itinerary item${day.events.length===1?'':'s'} · ${booked} booked${open?` · ${open} flexible / open`:''}</div><div class="travel-day-picker">${TRAVEL_DAYS.map(d=>`<button class="travel-day ${d.key===key?'active':''}" data-travel-day="${d.key}"><span>${d.short}</span><b>${d.day}</b><small>${d.month}</small></button>`).join('')}</div><div class="tiny travel-source">Itinerary: Time Table_v2 · vendor contacts are public office contacts unless noted.</div></div><div class="travel-timeline">${day.events.map(renderTravelEvent).join('')}</div>`;
 }
-
-const renderBeforeTravel=render;
-render=function(){
-  if(state.ui.tab!=='travel')return renderBeforeTravel();
-  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab==='travel'));
-  document.getElementById('app').innerHTML=renderTravel();
-  bind();
-};
