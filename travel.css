@@ -1,5 +1,5 @@
-/* v3.7 travel dossier */
-.bottomnav{grid-template-columns:repeat(5,1fr)}
+/* v3.8 travel dossier */
+.bottomnav{grid-template-columns:repeat(6,1fr)}
 .navbtn{min-width:0;padding-left:2px;padding-right:2px}
 .travel-hero{overflow:hidden}
 .travel-summary{font-size:12px;color:var(--muted);margin:2px 0 12px}
@@ -30,14 +30,17 @@
 .travel-route{font-size:10px;color:var(--green3);font-weight:750;margin-top:4px}
 .travel-notes{font-size:11px;line-height:1.4;color:var(--muted);margin-top:5px;white-space:pre-line}
 .travel-vendor{margin-top:9px;padding-top:8px;border-top:1px solid #ded4c1}
-.travel-vendor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.travel-vendor-head b{display:block;font-family:var(--serif);font-size:14px;color:var(--green);line-height:1.05}
-.travel-vendor-head span{display:block;font-size:9px;color:var(--muted);margin-top:1px}
-.travel-contact-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
-a.travel-contact{display:inline-flex;align-items:center;justify-content:center;min-height:29px;border-radius:6px;padding:5px 7px;border:1px solid #bfc9bc;background:#e9eee5;color:var(--green);text-decoration:none;font-size:9px;font-weight:800}
-.travel-vendor-detail{font-size:9px;line-height:1.35;color:#667066;margin-top:4px;overflow-wrap:anywhere}
-.travel-vendor-note{font-size:9px;line-height:1.35;color:#795e24;background:#f2e8c9;border:1px solid #dcc88f;border-radius:6px;padding:5px 6px;margin-top:5px}
+.travel-vendor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.travel-vendor-copy{min-width:0;flex:1 1 auto}
+.travel-vendor-head b{display:block;font-family:var(--serif);font-size:14px;color:var(--green);line-height:1.1}
+.travel-vendor-head span{display:block;font-size:9px;color:var(--muted);margin-top:2px;line-height:1.25}
+.travel-contact-row{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;flex:0 0 auto}
+a.travel-contact{display:inline-flex;align-items:center;justify-content:center;min-height:34px;min-width:46px;border-radius:7px;padding:6px 9px;border:1px solid #bfc9bc;background:#e9eee5;color:var(--green);text-decoration:none;font-size:10px;font-weight:800;line-height:1;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+a.travel-contact:visited{color:var(--green)}
+.travel-vendor-detail{font-size:9px;line-height:1.35;color:#667066;margin-top:6px;overflow-wrap:anywhere}
+.travel-vendor-detail span{display:block;margin-top:1px}
+.travel-vendor-note{font-size:9px;line-height:1.35;color:#795e24;background:#f2e8c9;border:1px solid #dcc88f;border-radius:6px;padding:5px 6px;margin-top:6px}
 @media(max-width:390px){
- .travel-event{grid-template-columns:61px minmax(0,1fr);gap:8px}.travel-event:before{left:59px}.travel-time{font-size:10px;padding-right:7px}.travel-vendor-head{display:block}.travel-contact-row{justify-content:flex-start;margin-top:6px}
+ .travel-event{grid-template-columns:61px minmax(0,1fr);gap:8px}.travel-event:before{left:59px}.travel-time{font-size:10px;padding-right:7px}.travel-vendor-head{display:block}.travel-contact-row{justify-content:flex-start;margin-top:7px}
  .navbtn{font-size:9px}.navbtn span{font-size:18px}
 }
