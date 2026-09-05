@@ -10,7 +10,7 @@ function bind(){
   document.querySelectorAll('[data-wolf-type]').forEach(el=>el.onclick=()=>setWolfCall(+el.dataset.wolfHole,el.dataset.wolfType,el.dataset.wolfPartner||null));
   document.querySelectorAll('[data-coin-key]').forEach(el=>el.onclick=()=>{state.manual.coin[el.dataset.coinKey]=el.dataset.coinWinner;save();render();toast('Coin flip recorded')});
   document.querySelectorAll('[data-hi]').forEach(el=>el.onchange=()=>{state.players[el.dataset.hi].hi=+el.value;save();render();toast('Future-round HI updated')});
-  document.querySelectorAll('[data-tee-c]').forEach(el=>el.onchange=()=>{const c=el.dataset.teeC;if(roundLocked(c)){alert(`${COURSE_DATA[c].name} is already locked. Unlock that round’s setup first if the tee was entered incorrectly.`);render();return}state.tees[c][el.dataset.teeP]=el.value;save();render()});
+  document.querySelectorAll('[data-tee-c]').forEach(el=>el.onchange=()=>{const c=el.dataset.teeC,p=el.dataset.teeP;state.tees[c][p]=el.value;if(roundLocked(c)&&state.roundLocks[c]?.tees)state.roundLocks[c].tees[p]=el.value;state.ui.holeResult=null;save();render();toast('Tee updated')});
   document.querySelectorAll('[data-wolf-move]').forEach(el=>el.onclick=()=>moveWolf(+el.dataset.wolfMove,+el.dataset.dir));
   document.querySelectorAll('[data-go-standings]').forEach(el=>el.onclick=()=>{state.ui.tab='standings';state.ui.round=null;save();render();window.scrollTo(0,0)});
   document.querySelectorAll('[data-unlock]').forEach(el=>el.onclick=()=>{const k=el.dataset.unlock;if(confirm(`Unlock ${k} pairings? This allows prior-score edits to change future teams.`)){state.locks[k]=null;save();render();toast('Pairing lock cleared')}});
@@ -43,6 +43,6 @@ function exportState(){const blob=new Blob([JSON.stringify(state,null,2)],{type:
 function importState(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);state=mergeState(freshState(),x);Object.keys(COURSE_DATA).forEach(c=>{if(roundHasAnyData(c)&&!state.roundLocks[c])state.roundLocks[c]=createRoundSnapshot(c,'imported')});save();render();toast('Backup imported')}catch(err){alert('That backup file could not be read.')}};r.readAsText(f)}
 document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>{state.ui.tab=b.dataset.tab;if(state.ui.tab!=='rounds')state.ui.round=null;state.ui.liveExpanded=false;state.ui.holeResult=null;save();render();window.scrollTo(0,0)});
 if('serviceWorker'in navigator&&location.protocol.startsWith('http')){
-  navigator.serviceWorker.register('sw.js?v=3.7.2',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
+  navigator.serviceWorker.register('sw.js?v=3.7.2-openedit',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{});
 }
 render();
