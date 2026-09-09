@@ -19,3 +19,15 @@ if(typeof playingHandicapPreview==='function'){
     return playingHandicapPreviewBeforeCastleFix(c,p);
   };
 }
+
+if(typeof matchFormatInfo==='function'){
+  const matchFormatInfoBeforeCastleFix=matchFormatInfo;
+  matchFormatInfo=function(c){
+    const x=matchFormatInfoBeforeCastleFix(c);
+    if(c!=='castlestuart')return x;
+    return{...x,
+      short:'2v2 Bumstead · 90% of CH difference from low player · Low + High + Total',
+      detail:'Teams are 1st + 4th vs 2nd + 3rd in the C-Bum standings entering Castle Stuart. The lowest unrounded Course Handicap plays scratch; each other player receives 90% of the difference from that low player, rounded to a Playing Handicap. Every hole has three team points: Low Ball, High Ball and Total; ties split 0.5 / 0.5. C-Bum: winning team gets 5 each, losing team 2 each.'
+    };
+  };
+}
